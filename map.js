@@ -1,6 +1,8 @@
+// map.js
 var directionDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
+var routes = new Array;
  
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -12,28 +14,26 @@ function initialize() {
     }; 
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     directionsDisplay.setMap(map);
+    calcRoute();
 }
  
  
+function calcRoute() {
  
-function tracerTournee(depart, liste, arrivee, couleur) {
-    var waypts = new Array; 
-    for (var i in liste ) {
-      waypts.push({
-          location:liste[i],
-          stopover:true});
-    }
+    if (0 == routes.length ) return ; 
+    var route = routes.pop(); 
+    var routeDetails = route.split(":"); 
+    var villeOrigine = routeDetails[0]; 
+    var villeDestination = routeDetails[1]; 
+    var couleurRoute = routeDetails[2]; 
  
     var request = {
-      origin: depart,
-      destination: arrivee,
-      waypoints: waypts,
-      optimizeWaypoints: true,             // optimisation de la tournée
-      travelMode: google.maps.TravelMode.DRIVING
+      origin:villeOrigine, 
+      destination:villeDestination,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
- 
     var polylineOp = {
-      strokeColor:couleur // la couleur de la route : rouge
+      strokeColor:couleurRoute // la couleur de la route : rouge
     };
     var renderOptions = {
       polylineOptions : polylineOp
@@ -43,48 +43,23 @@ function tracerTournee(depart, liste, arrivee, couleur) {
  
     directionsDisplay.setMap(map);
  
-   directionsService.route(request, function(response, status) {
+    directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
- 
-      var totalDistance=0; 
-      var route = response.routes[0];
-      var summaryPanel = document.getElementById('directions_panel');
-      summaryPanel.innerHTML = '';
-      // For each route, display summary information.
-      for (var i = 0; i < route.legs.length; i++) {
-        var routeSegment = i + 1;
-        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
-        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-        totalDistance += route.legs[i].distance.value; 
+        directionsDisplay.setDirections(response);
+        if (routes.length>0) {
+        	setTimeout(function(){calcRoute();},600); 
+        }
       }
-      summaryPanel.innerHTML += totalDistance/1000 + "Km"; 
-    }
-  });
+    });
 }
  
  
 function initialisation () {
 	initialize();
-	tracerTournee("paris",["lille", "lens", "béthune", "douai", "valenciennes"], "calais", "blue"); 
- 
-}
- 
-function initEventHandlers(element, event, fx) {
-    if (element.addEventListener)
-        element.addEventListener(event, fx, false);
-    else if (element.attachEvent)
-        element.attachEvent('on' + event, fx);
-} // observe
- 
-initEventHandlers(window, 'load', initialisation);
- 
- 
-function initialisation () {
-	initialize();
-	tracerTournee(); 
+	routes.push("lille:lens:red"); 
+	routes.push("béthune:lens:green"); 
+	routes.push("arras:lens:blue"); 
+	calcRoute(); 
  
 }
  
