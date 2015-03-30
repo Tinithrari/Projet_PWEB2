@@ -25,7 +25,7 @@ function calcRoute() {
     var routeDetails = route.split(":"); 
     var villeOrigine = routeDetails[0]; 
     var villeDestination = routeDetails[1]; 
-    var couleurRoute = routeDetails[2]; 
+    var couleurRoute = routeDetails[2];
  
     var request = {
       origin:villeOrigine, 
@@ -58,8 +58,8 @@ function initialisation () {
 	initialize();
 	routes.push("lille:lens:red"); 
 	routes.push("béthune:lens:green"); 
-	routes.push("arras:lens:blue"); 
-	calcRoute(); 
+	routes.push("arras:lens:yellow");
+	calcRoute();
  
 }
  

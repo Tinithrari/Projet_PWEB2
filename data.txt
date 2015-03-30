@@ -13,7 +13,7 @@
 ('Rue Christophe Colomb','62640','Montigny-en-Gohelle','Pas de Calais','2.9349715','50.4278910'),
 ('Rue Clément Ader','62800','Liévin','Pas de Calais','2.7601929','50.4274658'),
 ('Rue de Montdidier','62790','Leforest','Pas de Calais','3.0557010','50.4444579'),
-('Rue de l'Egalité','62220','Carvin','Pas de Calais','2.9574071','50.4981358'),
+('Rue de l\'Egalité','62220','Carvin','Pas de Calais','2.9574071','50.4981358'),
 ('Cité du Général de Gaulle','59221','Bauvin','Nord','2.8993561','50.5107807'),
 ('Rue de Bellacourt','62123','Bailleulmont','Pas de Calais','2.6660280','50.2373414'),
 ('Rue Saint-Edouard','62300','Éleu-dit-Leauwette','Pas de Calais','2.8179998','50.4446729'),
@@ -22,6 +22,6 @@
 ('Rue Jean Moulin','62940','Haillicourt','Pas de Calais','2.5686811','50.4736566'),
 ('Rue Jean-Loup Fontaine','62750','Loos-en-Gohelle','Pas de Calais','2.7898033','50.4615532'),
 ('Rue des Giroflées','59553','Cuincy','Nord','3.0460744','50.3787638'),
-('rue  jéhanne  de  lallain','59167','Lallaing','Nord','3.1708931','50.3851176'),
+('rue jéhanne de lallain','59167','Lallaing','Nord','3.1708931','50.3851176'),
 ('Rue de Fontenoy','59800','Lille','Nord','3.0678086','50.6221827'),
-('Rue d'Alésia','75000','Paris','Paris','2.3232206','48.8291774')
+('Rue d\'Alésia','75000','Paris','Paris','2.3232206','48.8291774')
